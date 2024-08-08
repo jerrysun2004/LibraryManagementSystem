@@ -1,0 +1,82 @@
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class LibrarySystemTest {
+
+    private Library library;
+    private User user;
+    private Book book1;
+    private Book book2;
+
+    @BeforeEach
+    public void setUp() {
+        library = Library.INSTANCE;
+        library.getBooks().clear();
+        library.getUsers().clear();
+        
+        user = new User("John", "Doe", "john.doe@example.com", "12345", "password");
+        library.addUser(user);
+        
+        book1 = new Book("1984", "George Orwell", "1234567890");
+        book2 = new Book("To Kill a Mockingbird", "Harper Lee", "0987654321");
+        
+        library.addBook(book1);
+        library.addBook(book2);
+    }
+
+    @Test
+    public void testBookAvailableForCheckout() throws BookNotAvailableException, TooManyOverdueBooksException {
+        assertFalse(book1.isCheckedOut());
+        user.borrowBook(book1);
+        assertTrue(book1.isCheckedOut());
+    }
+
+    @Test
+    public void testBookNotAvailableForCheckout() {
+        book1.setCheckedOut(true);
+        assertThrows(BookNotAvailableException.class, () -> {
+            user.borrowBook(book1);
+        });
+    }
+
+    @Test
+    public void testTooManyOverdueBooks() {
+        // Simulate user having max overdue books
+        for (int i = 0; i < 5; i++) {
+            user.getBorrowedBooks().add(new Book("Overdue Book " + i, "Author", "ISBN" + i));
+        }
+
+        assertThrows(TooManyOverdueBooksException.class, () -> {
+            user.borrowBook(book2);
+        });
+    }
+
+    @Test
+    public void testReturnBook() throws BookNotAvailableException, TooManyOverdueBooksException {
+        user.borrowBook(book1);
+        assertTrue(book1.isCheckedOut());
+        user.returnBook(book1);
+        assertFalse(book1.isCheckedOut());
+    }
+
+    @Test
+    public void testFindBookByISBN() {
+        Book foundBook = library.findBookByISBN("1234567890");
+        assertNotNull(foundBook);
+        assertEquals("1984", foundBook.getTitle());
+
+        Book notFoundBook = library.findBookByISBN("nonexistentISBN");
+        assertNull(notFoundBook);
+    }
+
+    @Test
+    public void testFindUserByLibraryCardNumber() {
+        LibraryUser foundUser = library.findUserByLibraryCardNumber("12345");
+        assertNotNull(foundUser);
+        assertEquals("John", ((User) foundUser).getFirstName());
+
+        LibraryUser notFoundUser = library.findUserByLibraryCardNumber("nonexistentCard");
+        assertNull(notFoundUser);
+    }
+}

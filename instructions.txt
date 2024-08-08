@@ -1,0 +1,2 @@
+this is my Library Database Management System Project. Jerry Sun
+To run this program compile all programs and run LibraryManagementSystem.java
