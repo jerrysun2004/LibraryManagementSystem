@@ -4,7 +4,7 @@ public class Librarian extends User {
     public Librarian(String firstName, String lastName, String email, String libraryCardNumber) {
         super(firstName, lastName, email, libraryCardNumber, DEFAULT_PASSWORD);
     }
-
+//make the two special methods that librarian has, being able to disable and enable users.
     public void enableUser(User user) {
         user.setActive(true);
     }
