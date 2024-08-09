@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+//this is the signup panel which will show up when a user clicks on the sign up button on the welcome page
+//here they will enter their first and last name library id card and other data fields
+
 
 public class SignupPanel extends JPanel implements Serializable {
     private LibraryManagementSystem mainFrame;
@@ -24,7 +27,7 @@ public class SignupPanel extends JPanel implements Serializable {
 
         // Set background color
         setBackground(new Color(70, 130, 180));
-
+//background color is the same as welcome page
         JLabel titleLabel = new JLabel("Sign Up", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
         titleLabel.setForeground(Color.WHITE);
@@ -33,7 +36,7 @@ public class SignupPanel extends JPanel implements Serializable {
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         add(titleLabel, gbc);
-
+//state the dimensions of the signin page
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.EAST;
         gbc.gridx = 0;
@@ -90,7 +93,7 @@ public class SignupPanel extends JPanel implements Serializable {
         buttonPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbcButton = new GridBagConstraints();
         gbcButton.insets = new Insets(10, 5, 10, 5);
-
+//create the buttons and specify the behavior
         JButton signupButton = createStyledButton("Sign Up");
         signupButton.addActionListener(new ActionListener() {
             @Override
@@ -135,7 +138,7 @@ public class SignupPanel extends JPanel implements Serializable {
         gbc.anchor = GridBagConstraints.CENTER;
         add(buttonPanel, gbc);
     }
-
+//create labels and buttons
     private JLabel createLabel(String text) {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -168,7 +171,7 @@ public class SignupPanel extends JPanel implements Serializable {
             e.printStackTrace();
         }
     }
-
+//load the user data into data file
     public static List<User> loadUserData() {
         List<User> users = new ArrayList<>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(USER_DATA_FILE))) {
