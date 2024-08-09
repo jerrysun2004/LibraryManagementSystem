@@ -138,7 +138,8 @@ public class RegularUserPanel extends JPanel {
             JOptionPane.showMessageDialog(mainFrame, "Books returned successfully.");
         }
     }
-
+//If they want to see which books are avaialbe in the catalog this will give them a nicely
+//formatted list of all the books avaialble at the library at the current time
     private void showListBooksDialog() {
         StringBuilder booksList = new StringBuilder("<html>Books in Library:<br><br>");
         for (Book book : library.getBooks()) {
