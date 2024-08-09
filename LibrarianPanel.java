@@ -46,7 +46,7 @@ public class LibrarianPanel extends JPanel {
                 showRemoveBookDialog();
             }
         });
-
+//following methods specify the behavior of the buttons and what to do when these buttons are clicked
         disableUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
