@@ -78,7 +78,8 @@ public class RegularUserPanel extends JPanel {
         button.setPreferredSize(new Dimension(200, 40));
         return button;
     }
-
+//When the user is about to check out books
+//this will pop up and allow users to check off which books they are checkingout
     private void showCheckoutBooksDialog() {
         List<Book> availableBooks = new ArrayList<>();
         for (Book book : library.getBooks()) {
@@ -112,7 +113,7 @@ public class RegularUserPanel extends JPanel {
             }
         }
     }
-
+//similar to checkout it will return a list of the books that the user has checked out and allow them to return the books they want to return
     private void showReturnBooksDialog() {
         List<Book> borrowedBooks = currentUser.getBorrowedBooks();
 
