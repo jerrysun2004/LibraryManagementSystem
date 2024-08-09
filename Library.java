@@ -13,11 +13,11 @@ public enum Library implements Serializable {
         users = new ArrayList<>();
         // Add default librarian
         addUser(new Librarian("Library", "Admin", "library@admin.com", "library"));
-
+//this is the derfault library user
         // Add classic books
         addClassicBooks();
     }
-
+//auto generated list of 10 classic books to start off the library as.
     private void addClassicBooks() {
         books.add(new Book("Pride and Prejudice", "Jane Austen", "1111111111"));
         books.add(new Book("To Kill a Mockingbird", "Harper Lee", "2222222222"));
