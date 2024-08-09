@@ -73,7 +73,7 @@ public class User implements LibraryUser, Comparable<User>, Serializable {
     public String getFirstName() {
         return firstName;
     }
-
+//these are all the methods that a user has, for example setters and getters like getEmail() and getFirstName().
     public String getLastName() {
         return lastName;
     }
